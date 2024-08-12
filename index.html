@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Budżet domowy</title>
+  </head>
+  <body>
+    <section>
+      <h1 class="available-amount">0</h1>
+      <div class="two-column-section">
+        <div class="left-column">
+          <h2>Przychody</h2>
+          <div class="input-container">
+            <input
+              type="text"
+              placeholder="Nazwa przychodu"
+              class="input-name"
+              id="income-name"
+            />
+            <input
+              type="number"
+              placeholder="Kwota"
+              class="input-amount"
+              id="income-amount"
+            />
+            <button class="btn" id="income-btn">Dodaj</button>
+          </div>
+          <ul class="list" id="income-list"></ul>
+          <p class="money-sum" id="income-sum">4</p>
+        </div>
+        <div class="right-column">
+          <h2>Wydatki</h2>
+          <div class="input-container">
+            <input
+              type="text"
+              placeholder="Nazwa wydatku"
+              class="input-name"
+              id="expenses-name"
+            />
+            <input
+              type="number"
+              placeholder="Kwota"
+              class="input-amount"
+              id="expenses-amount"
+            />
+            <button class="btn" id="expenses-btn">Dodaj</button>
+          </div>
+          <ul class="list" id="expenses-list"></ul>
+          <p class="money-sum" id="expenses-sum">2</p>
+        </div>
+      </div>
+    </section>
+    <script src="JS files/main.js" defer type="module"></script>
+    <script src="JS files/expenses.js" defer type="module"></script>
+    <script src="JS files/income.js" defer type="module"></script>
+  </body>
+</html>

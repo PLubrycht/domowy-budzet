@@ -1,0 +1,25 @@
+.available-amount::before {
+  content: "W portfelu pozostało: ";
+}
+.available-amount::after {
+  content: "zł";
+}
+.two-column-section {
+  display: flex;
+  justify-content: space-around;
+}
+.right-column,
+.left-column {
+  width: 40%;
+}
+#income-sum::before {
+  content: "Suma przychodów: ";
+}
+
+#expenses-sum::before {
+  content: "Suma wydatków: ";
+}
+#income-sum::after,
+#expenses-sum::after {
+  content: "zł";
+}
