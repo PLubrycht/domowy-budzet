@@ -18,13 +18,17 @@ const addingExpensesListElement = () => {
   editBtn.textContent = "Edytuj";
   const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "Usuń";
+  const expensesListElementButtonsContainer = document.createElement("div");
+  expensesListElementButtonsContainer.id = "list-elements-button-container";
   const expensesListElement = document.createElement("li");
+  expensesListElement.id = "list-element";
   let inputExpensesNameValue = inputExpensesName.value;
   let inputExpensesAmountValue = inputExpensesAmount.value;
 
   expensesListElement.textContent = `${inputExpensesNameValue} - ${inputExpensesAmountValue} zł`;
-  expensesListElement.appendChild(editBtn);
-  expensesListElement.appendChild(deleteBtn);
+  expensesListElementButtonsContainer.appendChild(editBtn);
+  expensesListElementButtonsContainer.appendChild(deleteBtn);
+  expensesListElement.appendChild(expensesListElementButtonsContainer);
   expensesList.appendChild(expensesListElement);
 
   sum += Number(inputExpensesAmountValue);
@@ -60,8 +64,9 @@ const addingExpensesListElement = () => {
       expensesSum.textContent = sum.toString();
 
       // Clean up and restore state
-      expensesListElement.appendChild(editBtn);
-      expensesListElement.appendChild(deleteBtn);
+      expensesListElementButtonsContainer.appendChild(editBtn);
+      expensesListElementButtonsContainer.appendChild(deleteBtn);
+      expensesListElement.appendChild(expensesListElementButtonsContainer);
       confirmChangeButton.remove();
       expensesBtn.style.display = "inline";
       editBtn.disabled = false;

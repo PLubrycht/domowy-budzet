@@ -1,0 +1,20 @@
+@media screen and (max-width: 600px) {
+  .two-column-section {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .right-column,
+  .left-column {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+  }
+  #list-elements-button-container {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+  }
+}
