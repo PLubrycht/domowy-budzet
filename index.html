@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,11 +8,14 @@
   </head>
   <body>
     <section>
-      <h1 class="available-amount">0</h1>
+      <h1 class="available-amount">
+        W Portfelu Pozostało:
+        <span id="result">0</span> zł
+      </h1>
       <div class="two-column-section">
         <div class="left-column">
           <h2>Przychody</h2>
-          <div class="input-container">
+          <div class="input-income-container">
             <input
               type="text"
               placeholder="Nazwa przychodu"
@@ -21,18 +24,20 @@
             />
             <input
               type="number"
-              placeholder="Kwota"
+              placeholder="Kwota PLN"
               class="input-amount"
               id="income-amount"
             />
             <button class="btn" id="income-btn">Dodaj</button>
           </div>
           <ul class="list" id="income-list"></ul>
-          <p class="money-sum" id="income-sum">4</p>
+          <p class="money-sum">
+            Suma przychodów: <span id="income-sum">0</span> zł
+          </p>
         </div>
         <div class="right-column">
           <h2>Wydatki</h2>
-          <div class="input-container">
+          <div class="input-expenses-container">
             <input
               type="text"
               placeholder="Nazwa wydatku"
@@ -41,19 +46,21 @@
             />
             <input
               type="number"
-              placeholder="Kwota"
+              placeholder="Kwota PLN"
               class="input-amount"
               id="expenses-amount"
             />
             <button class="btn" id="expenses-btn">Dodaj</button>
           </div>
           <ul class="list" id="expenses-list"></ul>
-          <p class="money-sum" id="expenses-sum">2</p>
+          <p class="money-sum">
+            Suma wydatków: <span id="expenses-sum">0</span> zł
+          </p>
         </div>
       </div>
     </section>
-    <script src="JS files/main.js" defer type="module"></script>
-    <script src="JS files/expenses.js" defer type="module"></script>
     <script src="JS files/income.js" defer type="module"></script>
+    <script src="JS files/expenses.js" defer type="module"></script>
+    <script src="JS files/main.js" defer type="module"></script>
   </body>
 </html>
