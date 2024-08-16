@@ -26,6 +26,9 @@ body {
   border-radius: 5px;
   padding: 2px 5px;
 }
+#list-element:nth-of-type(even) {
+  background-color: rgba(184, 180, 180, 0.555);
+}
 #list-elements-button-container {
   display: flex;
   justify-content: space-between;
