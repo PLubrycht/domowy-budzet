@@ -45,19 +45,33 @@ const addingExpensesListElement = (event) => {
   const editingListElement = () => {
     editBtn.disabled = true;
     expensesListElement.textContent = "";
+
+    const editForm = document.createElement("form");
+
     const editNameInput = document.createElement("input");
     editNameInput.type = "text";
     editNameInput.value = inputExpensesNameValue;
+    editNameInput.required = true;
+
     const editAmountInput = document.createElement("input");
     editAmountInput.type = "number";
     editAmountInput.value = inputExpensesAmountValue;
-    const confirmChangeButton = document.createElement("button");
-    confirmChangeButton.textContent = "Confirm";
-    expensesListElement.appendChild(editNameInput);
-    expensesListElement.appendChild(editAmountInput);
-    expensesListElement.appendChild(confirmChangeButton);
+    editAmountInput.required = true;
+    editAmountInput.min = "0";
+    editAmountInput.step = "0.01";
 
-    const confirmChange = () => {
+    const confirmChangeButton = document.createElement("button");
+    confirmChangeButton.textContent = "Zatwierdź";
+    confirmChangeButton.type = "submit";
+
+    editForm.appendChild(editNameInput);
+    editForm.appendChild(editAmountInput);
+    editForm.appendChild(confirmChangeButton);
+
+    expensesListElement.appendChild(editForm);
+
+    editForm.addEventListener("submit", (event) => {
+      event.preventDefault();
       const newExpensesNameValue = editNameInput.value;
       const newExpensesAmountValue = editAmountInput.value;
       sum =
@@ -71,9 +85,7 @@ const addingExpensesListElement = (event) => {
       expensesListElement.appendChild(expensesListElementButtonsContainer);
       editBtn.disabled = false;
       updateResult();
-    };
-
-    confirmChangeButton.addEventListener("click", confirmChange);
+    });
   };
 
   editBtn.addEventListener("click", editingListElement);

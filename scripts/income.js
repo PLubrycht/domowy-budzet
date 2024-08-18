@@ -45,19 +45,33 @@ const addingIncomeListElement = (event) => {
   const editingListElement = () => {
     editBtn.disabled = true;
     incomeListElement.textContent = "";
+
+    const editForm = document.createElement("form");
+
     const editNameInput = document.createElement("input");
     editNameInput.type = "text";
     editNameInput.value = inputIncomeNameValue;
+    editNameInput.required = true;
+
     const editAmountInput = document.createElement("input");
     editAmountInput.type = "number";
     editAmountInput.value = inputIncomeAmountValue;
-    const confirmChangeButton = document.createElement("button");
-    confirmChangeButton.textContent = "Confirm";
-    incomeListElement.appendChild(editNameInput);
-    incomeListElement.appendChild(editAmountInput);
-    incomeListElement.appendChild(confirmChangeButton);
+    editAmountInput.required = true;
+    editAmountInput.min = "0";
+    editAmountInput.step = "0.01";
 
-    const confirmChange = () => {
+    const confirmChangeButton = document.createElement("button");
+    confirmChangeButton.textContent = "Zatwierdź";
+    confirmChangeButton.type = "submit";
+
+    editForm.appendChild(editNameInput);
+    editForm.appendChild(editAmountInput);
+    editForm.appendChild(confirmChangeButton);
+
+    incomeListElement.appendChild(editForm);
+
+    editForm.addEventListener("submit", (event) => {
+      event.preventDefault();
       const newIncomeNameValue = editNameInput.value;
       const newIncomeAmountValue = editAmountInput.value;
       sum = sum - Number(inputIncomeAmountValue) + Number(newIncomeAmountValue);
@@ -70,9 +84,7 @@ const addingIncomeListElement = (event) => {
       incomeListElement.appendChild(incomeListElementButtonsContainer);
       editBtn.disabled = false;
       updateResult();
-    };
-
-    confirmChangeButton.addEventListener("click", confirmChange);
+    });
   };
 
   editBtn.addEventListener("click", editingListElement);
