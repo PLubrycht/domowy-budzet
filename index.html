@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/styles.css" />
     <link rel="stylesheet" href="styles/mobile.css" />
+    <link rel="stylesheet" href="styles/desktop.css" />
+
     <title>Budżet domowy</title>
   </head>
   <body>
@@ -15,55 +16,62 @@
           <span id="result">0</span> zł
         </h1>
       </header>
-      <div class="two-column-section">
-        <div class="left-column">
+      <main class="two-column-section">
+        <section class="left-column">
           <h2>Przychody</h2>
-          <div class="input-income-container">
+
+          <form id="income-form" class="input-income-container">
             <input
-              type="text"
-              placeholder="Nazwa przychodu"
-              class="input-name"
               id="income-name"
+              type="text"
+              required
+              placeholder="Nazwa przychodu"
             />
             <input
-              type="number"
-              placeholder="Kwota PLN"
-              class="input-amount"
               id="income-amount"
+              type="number"
+              required
+              min="0.01"
+              step="0.01"
+              placeholder="Kwota PLN"
             />
-            <button class="btn" id="income-btn">Dodaj</button>
-          </div>
+            <button id="income-btn" type="submit">Dodaj</button>
+          </form>
+
           <ul class="list" id="income-list"></ul>
           <p class="money-sum">
             Suma przychodów: <span id="income-sum">0</span> zł
           </p>
-        </div>
-        <div class="right-column">
+        </section>
+        <section class="right-column">
           <h2>Wydatki</h2>
-          <div class="input-expenses-container">
+
+          <form id="expenses-form" class="input-expenses-container">
             <input
-              type="text"
-              placeholder="Nazwa wydatku"
-              class="input-name"
               id="expenses-name"
+              type="text"
+              required
+              placeholder="Nazwa wydatku"
             />
             <input
+              id="expenses-amount"
               type="number"
               placeholder="Kwota PLN"
-              class="input-amount"
-              id="expenses-amount"
+              required
+              min="0.01"
+              step="0.01"
             />
-            <button class="btn" id="expenses-btn">Dodaj</button>
-          </div>
+            <button id="expenses-btn" type="submit">Dodaj</button>
+          </form>
+
           <ul class="list" id="expenses-list"></ul>
           <p class="money-sum">
             Suma wydatków: <span id="expenses-sum">0</span> zł
           </p>
-        </div>
-      </div>
+        </section>
+      </main>
     </section>
-    <script src="JS files/income.js" defer type="module"></script>
-    <script src="JS files/expenses.js" defer type="module"></script>
-    <script src="JS files/main.js" defer type="module"></script>
+    <script src="scripts/income.js" defer type="module"></script>
+    <script src="scripts/expenses.js" defer type="module"></script>
   </body>
 </html>

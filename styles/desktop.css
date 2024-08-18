@@ -1,0 +1,25 @@
+@media screen and (min-width: 600px) {
+  .two-column-section {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+  }
+
+  .right-column,
+  .left-column {
+    width: 40%;
+    display: flex;
+    position: relative;
+  }
+  .list-elements-button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 105px;
+  }
+  .list-element input {
+    max-width: fit-content;
+  }
+  .list-element {
+    width: 400px;
+  }
+}

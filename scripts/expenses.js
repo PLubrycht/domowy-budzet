@@ -1,26 +1,32 @@
 import { updateResult } from "./main.js";
 
 // Elements from HTML doc
+const form = document.querySelector("#expenses-form");
 const inputExpensesName = document.querySelector("#expenses-name");
 const inputExpensesAmount = document.querySelector("#expenses-amount");
-const expensesBtn = document.querySelector("#expenses-btn");
+
 const expensesList = document.querySelector("#expenses-list");
 const expensesSum = document.querySelector("#expenses-sum");
 let sum = 0;
-const expensesInputContainer = document.querySelector(
-  ".input-expenses-container"
-);
 
 // Functions
-const addingExpensesListElement = () => {
+const addingExpensesListElement = (event) => {
+  event.preventDefault();
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
   const editBtn = document.createElement("button");
   editBtn.textContent = "Edytuj";
   const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "Usuń";
   const expensesListElementButtonsContainer = document.createElement("div");
-  expensesListElementButtonsContainer.id = "list-elements-button-container";
+  expensesListElementButtonsContainer.className =
+    "list-elements-button-container";
   const expensesListElement = document.createElement("li");
-  expensesListElement.id = "list-element";
+  expensesListElement.className = "list-element";
   let inputExpensesNameValue = inputExpensesName.value;
   let inputExpensesAmountValue = inputExpensesAmount.value;
 
@@ -38,36 +44,32 @@ const addingExpensesListElement = () => {
   // Editing list element function
   const editingListElement = () => {
     editBtn.disabled = true;
-    expensesBtn.style.display = "none";
+    expensesListElement.textContent = "";
+    const editNameInput = document.createElement("input");
+    editNameInput.type = "text";
+    editNameInput.value = inputExpensesNameValue;
+    const editAmountInput = document.createElement("input");
+    editAmountInput.type = "number";
+    editAmountInput.value = inputExpensesAmountValue;
     const confirmChangeButton = document.createElement("button");
-    confirmChangeButton.textContent = "Potwierdź";
-    expensesInputContainer.appendChild(confirmChangeButton);
-
-    // Values before editing
-    const oldExpensesAmountValue = inputExpensesAmountValue;
-
-    inputExpensesName.value = inputExpensesNameValue;
-    inputExpensesAmount.value = inputExpensesAmountValue;
+    confirmChangeButton.textContent = "Confirm";
+    expensesListElement.appendChild(editNameInput);
+    expensesListElement.appendChild(editAmountInput);
+    expensesListElement.appendChild(confirmChangeButton);
 
     const confirmChange = () => {
-      inputExpensesNameValue = inputExpensesName.value;
-      inputExpensesAmountValue = inputExpensesAmount.value;
-
-      expensesListElement.textContent = `${inputExpensesNameValue} - ${inputExpensesAmountValue} zł`;
-
+      const newExpensesNameValue = editNameInput.value;
+      const newExpensesAmountValue = editAmountInput.value;
       sum =
-        sum - Number(oldExpensesAmountValue) + Number(inputExpensesAmountValue);
+        sum - Number(inputExpensesAmountValue) + Number(newExpensesAmountValue);
       expensesSum.textContent = sum.toString();
-
+      inputExpensesNameValue = newExpensesNameValue;
+      inputExpensesAmountValue = newExpensesAmountValue;
+      expensesListElement.textContent = `${inputExpensesNameValue} - ${inputExpensesAmountValue} zł`;
       expensesListElementButtonsContainer.appendChild(editBtn);
       expensesListElementButtonsContainer.appendChild(deleteBtn);
       expensesListElement.appendChild(expensesListElementButtonsContainer);
-      confirmChangeButton.remove();
-      expensesBtn.style.display = "inline";
       editBtn.disabled = false;
-      inputExpensesName.value = "";
-      inputExpensesAmount.value = "";
-
       updateResult();
     };
 
@@ -76,7 +78,6 @@ const addingExpensesListElement = () => {
 
   editBtn.addEventListener("click", editingListElement);
 
-  // Delete button function
   const deleteListElement = () => {
     sum -= Number(inputExpensesAmountValue);
     expensesSum.textContent = sum.toString();
@@ -84,11 +85,10 @@ const addingExpensesListElement = () => {
 
     updateResult();
   };
-
   deleteBtn.addEventListener("click", deleteListElement);
 
   inputExpensesName.value = "";
   inputExpensesAmount.value = "";
 };
 
-expensesBtn.addEventListener("click", addingExpensesListElement);
+form.addEventListener("submit", addingExpensesListElement);
