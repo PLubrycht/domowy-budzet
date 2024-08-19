@@ -57,7 +57,7 @@ const addingIncomeListElement = (event) => {
     editAmountInput.type = "number";
     editAmountInput.value = inputIncomeAmountValue;
     editAmountInput.required = true;
-    editAmountInput.min = "0";
+    editAmountInput.min = "0.01";
     editAmountInput.step = "0.01";
 
     const confirmChangeButton = document.createElement("button");
